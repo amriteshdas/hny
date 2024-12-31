@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Year Celebration 2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fireworks-js@2.10.7/dist/index.umd.js"></script>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            color: #fff;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            z-index: 1;
+            position: relative;
+        }
+        #countdown {
+            text-align: center;
+        }
+        #timer {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        #year {
+            font-size: 10rem;
+            font-weight: 700;
+            position: relative;
+            overflow: hidden;
+            height: 10rem;
+            margin-bottom: 2rem;
+            perspective: 1000px;
+            height:200px ;
+        }
+        #year span {
+            position: absolute;
+            left: 0;
+            right: 0;
+            backface-visibility: hidden;
+            transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+        #currentYear {
+            transform-origin: bottom;
+        }
+        #nextYear {
+            transform: rotateX(-90deg);
+            transform-origin: top;
+        }
+        #happyNewYear {
+            font-size: 5rem;
+            font-weight: 700;
+            opacity: 0;
+            transition: opacity 1s ease-in, transform 1s ease-out;
+            transform: scale(0.5);
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+        }
+        #tsparticles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        #fireworks-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .balloon {
+            position: absolute;
+            width: 100px;
+            height: 125px;
+            border-radius: 50%;
+            box-shadow: inset -10px -10px 0 rgba(0,0,0,0.07);
+            animation: float 6s ease-in-out infinite;
+        }
+        .balloon:before {
+            content: "";
+            position: absolute;
+            bottom: -11px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 25px;
+            background: rgba(255,255,255,0.8);
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 2;
+        }
+        .btn {
+            background-color: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 25px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div id="tsparticles"></div>
+    <div id="fireworks-container"></div>
+    <div class="container">
+        <div id="countdown">
+            <div id="timer"></div>
+            <div id="year">
+                <span id="currentYear">2024</span>
+                <span id="nextYear">2025</span>
+            </div>
+            <div id="happyNewYear">Happy New Year!</div>
+        </div>
+    </div>
+    <div class="controls">
+        <button id="toggleMusic" class="btn">Play Music</button>
+        <button id="toggleFireworks" class="btn">Start Fireworks</button>
+    </div>
+    <audio id="bgMusic" loop>
+        <source src="celebration.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        // Initialize TSParticles
+        tsParticles.load("tsparticles", {
+            particles: {
+                number: { value: 100 },
+                color: { value: "#ffffff" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                move: { enable: true, speed: 2 }
+            }
+        });
+
+        // Initialize Fireworks
+        const fireworksContainer = document.getElementById('fireworks-container');
+        const fireworks = new Fireworks.default(fireworksContainer, {
+            autoresize: true,
+            opacity: 0.5,
+            acceleration: 1.05,
+            friction: 0.97,
+            gravity: 1.5,
+            particles: 50,
+            traceLength: 3,
+            traceSpeed: 10,
+            explosion: 5,
+            intensity: 30,
+            flickering: 50,
+            lineStyle: 'round',
+            hue: {
+                min: 0,
+                max: 360
+            },
+            delay: {
+                min: 30,
+                max: 60
+            },
+            rocketsPoint: {
+                min: 50,
+                max: 50
+            },
+            lineWidth: {
+                explosion: {
+                    min: 1,
+                    max: 3
+                },
+                trace: {
+                    min: 1,
+                    max: 2
+                }
+            },
+            brightness: {
+                min: 50,
+                max: 80
+            },
+            decay: {
+                min: 0.015,
+                max: 0.03
+            },
+            mouse: {
+                click: false,
+                move: false,
+                max: 1
+            }
+        });
+
+        // Countdown function
+        function updateCountdown() {
+            const now = new Date();
+            const newYear = new Date('2025-01-01T00:00:00').getTime();
+            const diff = newYear - now;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('timer').innerHTML = `
+                <span>${days}d</span> 
+                <span>${hours}h</span> 
+                <span>${minutes}m</span> 
+                <span>${seconds}s</span>
+            `;
+
+            if (diff <= 0) {
+                clearInterval(countdownInterval);
+                document.getElementById('timer').style.display = 'none';
+                animateYearChange();
+            }
+        }
+
+        function animateYearChange() {
+            const currentYear = document.getElementById('currentYear');
+            const nextYear = document.getElementById('nextYear');
+            
+            currentYear.style.transform = 'rotateX(90deg)';
+            nextYear.style.transform = 'rotateX(0deg)';
+            
+            setTimeout(() => {
+                const happyNewYear = document.getElementById('happyNewYear');
+                happyNewYear.style.opacity = '1';
+                happyNewYear.style.transform = 'scale(1)';
+                fireworks.start();
+                document.getElementById('bgMusic').play();
+                createBalloons();
+            }, 1000);
+        }
+
+        function createBalloons() {
+            const colors = ['#ff4136', '#ff851b', '#ffdc00', '#2ecc40', '#0074d9', '#b10dc9'];
+            for (let i = 0; i < 20; i++) {
+                const balloon = document.createElement('div');
+                balloon.className = 'balloon';
+                balloon.style.left = `${Math.random() * 100}%`;
+                balloon.style.bottom = `${Math.random() * 100}%`;
+                balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                balloon.style.animationDelay = `${Math.random() * 3}s`;
+                document.body.appendChild(balloon);
+            }
+        }
+
+        const countdownInterval = setInterval(updateCountdown, 1000);
+        updateCountdown(); // Initial call
+
+        // Music and Fireworks controls
+        const toggleMusicBtn = document.getElementById('toggleMusic');
+        const toggleFireworksBtn = document.getElementById('toggleFireworks');
+        const bgMusic = document.getElementById('bgMusic');
+
+        toggleMusicBtn.addEventListener('click', () => {
+            if (bgMusic.paused) {
+                bgMusic.play();
+                toggleMusicBtn.textContent = 'Pause Music';
+            } else {
+                bgMusic.pause();
+                toggleMusicBtn.textContent = 'Play Music';
+            }
+        });
+
+        toggleFireworksBtn.addEventListener('click', () => {
+            if (fireworks.isRunning) {
+                fireworks.stop();
+                toggleFireworksBtn.textContent = 'Start Fireworks';
+            } else {
+                fireworks.start();
+                toggleFireworksBtn.textContent = 'Stop Fireworks';
+            }
+        });
+    </script>
+</body>
+</html>
+
