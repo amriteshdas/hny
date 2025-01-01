@@ -138,8 +138,8 @@
         <div id="countdown">
             <div id="timer"></div>
             <div id="year">
-                <span id="currentYear">2024</span>
-                <span id="nextYear">2025</span>
+                <span id="currentYear">2025</span>
+                <span id="nextYear">2026</span>
             </div>
             <div id="happyNewYear">Happy New Year!</div>
         </div>
@@ -221,7 +221,7 @@
         // Countdown function
         function updateCountdown() {
             const now = new Date();
-            const newYear = new Date('2025-01-01T00:00:00').getTime();
+            const newYear = new Date('2026-01-01T00:00:00').getTime();
             const diff = newYear - now;
 
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
